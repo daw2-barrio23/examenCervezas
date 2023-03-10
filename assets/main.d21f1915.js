@@ -47,7 +47,7 @@ const footer = {
 };
 const pedidos = {
   template: `<div class="col-12 d-flex">
-    <div class="col-6 border border-dark" style="height: 100%; width: 50%;">
+    <div class="col-6 shadow shadow-box" style="height: 100%; width: 50%; padding: 10px;">
        <form id="formulario-cervezas">
         <label for="nombre-grupo">Nombre del grupo:</label>
         <input type="text" id="nombre-grupo" name="nombre-grupo" required><br><br>
@@ -57,16 +57,62 @@ const pedidos = {
         <input type="text" id="cervezas" name="cervezas" required><br><br>
         <label for="cantidad">\xBFCuantas te traigo?</label>
         <input type="number" id="cantidad" name="cantidad" required><br><br>
-        <button type="submit" class="bg-success text-white">A\xF1adir pedido</button>
+        <button type="submit" class="rounded bg-success text-white">A\xF1adir pedido</button>
        </form> 
     </div>
-   <div class="col-6"></div> 
+   <div class="col-6">
+      
+   </div> 
 </div>`
+};
+const tabla = {
+  template: `<div class="shadow shadow-box">
+  <table class="table" id="tabla">
+    <h3>Esto es lo que has pedido de momento</h3>
+      <thead>
+        <tr>
+          <th>cerveza</th>
+          <th>Cantidad</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody id="cuerpo">
+        <tr>
+          <td>Estrella Galicia</td>
+          <td>5</td>
+          <td><button type="button" class="btn btn-danger text-white">Eliminar</button></td>
+          <td><button type="button" class="btn btn-warning ">Editar pedido</button></td>
+        </tr>
+
+        <tr>
+          <td>Alhambra Reserva 1925</td>
+          <td>3</td>
+          <td><button type="button" class="btn btn-danger text-white">Eliminars</button></td>
+          <td><button type="button" class="btn btn-warning ">Editar pedido</button></td>
+        </tr>
+
+        <tr>
+          <td>San Miguel Especial</td>
+          <td>5</td>
+          <td><button type="button" class="btn btn-danger text-white">Eliminar</button></td>
+          <td><button type="button" class="btn btn-warning ">Editar pedido</button></td>
+        </tr>
+        
+      </tbody>
+    </table>
+</div>
+    
+    `
 };
 const home = {
   template: `
     <h4>Birras y tapas</h4>
     ${pedidos.template}
+    <br>
+    <br>
+
+    ${tabla.template}
     `
 };
 const styles = "";
