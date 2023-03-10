@@ -47,7 +47,7 @@ const footer = {
 };
 const pedidos = {
   template: `<div class="col-12 d-flex">
-    <div class="col-6">
+    <div class="col-6 border border-dark" style="height: 100%; width: 50%;">
        <form id="formulario-cervezas">
         <label for="nombre-grupo">Nombre del grupo:</label>
         <input type="text" id="nombre-grupo" name="nombre-grupo" required><br><br>
@@ -57,9 +57,10 @@ const pedidos = {
         <input type="text" id="cervezas" name="cervezas" required><br><br>
         <label for="cantidad">\xBFCuantas te traigo?</label>
         <input type="number" id="cantidad" name="cantidad" required><br><br>
+        <button type="submit" class="bg-success text-white">A\xF1adir pedido</button>
        </form> 
     </div>
-
+   <div class="col-6"></div> 
 </div>`
 };
 const home = {
