@@ -45,46 +45,6 @@ const header = {
 const footer = {
   template: `<h1>footer</h1>`
 };
-const tabla = {
-  template: `<div class="shadow shadow-box">
-  <table class="table" id="tabla">
-    <h3>Esto es lo que has pedido de momento</h3>
-      <thead>
-        <tr>
-          <th>cerveza</th>
-          <th>Cantidad</th>
-          <th></th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody id="cuerpo">
-        <tr>
-          <td>Estrella Galicia</td>
-          <td>5</td>
-          <td><button type="button" class="btn btn-danger text-white">Eliminar</button></td>
-          <td><button type="button" class="btn btn-warning ">Editar pedido</button></td>
-        </tr>
-
-        <tr>
-          <td>Alhambra Reserva 1925</td>
-          <td>3</td>
-          <td><button type="button" class="btn btn-danger text-white">Eliminars</button></td>
-          <td><button type="button" class="btn btn-warning ">Editar pedido</button></td>
-        </tr>
-
-        <tr>
-          <td>San Miguel Especial</td>
-          <td>5</td>
-          <td><button type="button" class="btn btn-danger text-white">Eliminar</button></td>
-          <td><button type="button" class="btn btn-warning ">Editar pedido</button></td>
-        </tr>
-        
-      </tbody>
-    </table>
-</div>
-    
-    `
-};
 const home = {
   template: `
     <h4>Birras y tapas</h4>
@@ -94,7 +54,8 @@ const home = {
     <br>
     <br>
 
-    ${tabla.template}
+    <div id="tabla">
+    </div>
     `
 };
 const styles = "";
@@ -5027,16 +4988,61 @@ class Toast extends BaseComponent {
 }
 enableDismissTrigger(Toast);
 defineJQueryPlugin(Toast);
+const cervezas = [
+  {
+    id: 1,
+    nombre: "Mahou Cinco Estrellas",
+    tipo: "Lager",
+    origen: "Madrid",
+    descripcion: "Cerveza rubia, suave y refrescante con un sabor ligeramente amargo.",
+    imagen: "https://www.mahou.es/wp-content/themes/mahou_v2/template-contents/mahou-familia/dist/images/Botella_Mahou_5_Estrellas.png"
+  },
+  {
+    id: 2,
+    nombre: "Estrella Galicia",
+    tipo: "Lager",
+    origen: "Galicia",
+    descripcion: "Cerveza suave y equilibrada con un sabor ligeramente amargo y aroma a malta.",
+    imagen: "https://cdn.shopify.com/s/files/1/0271/8158/0388/products/estrella-galicia-escerveza-3.jpg?v=1648893181"
+  },
+  {
+    id: 3,
+    nombre: "Alhambra Reserva 1925",
+    tipo: "Lager",
+    origen: "Granada",
+    descripcion: "Cerveza rubia con un sabor ligeramente dulce y toques de caramelo.",
+    imagen: "https://sgfm.elcorteingles.es/SGFM/dctm/MEDIA03/202204/04/00118602800916____3__600x600.jpg"
+  },
+  {
+    id: 4,
+    nombre: "San Miguel Especial",
+    tipo: "Lager",
+    origen: "Barcelona",
+    descripcion: "Cerveza rubia, suave y refrescante con un sabor ligeramente amargo.",
+    imagen: "https://www.sanmiguel.com/es/wp-content/uploads/sites/2/2021/01/san-miguel-gluten-free-4.png"
+  },
+  {
+    id: 5,
+    nombre: "Damm Estrella",
+    tipo: "Lager",
+    origen: "Barcelona",
+    descripcion: "Cerveza rubia, suave y refrescante con un sabor ligeramente amargo.",
+    imagen: "https://static.damm.com/sites/default/files/config-page/estrella_header_logo/estrella-damm_0.png"
+  }
+];
 const pedidos = {
   template: `<div class="col-12 d-flex">
     <div class="col-6 shadow shadow-box" style="height: 100%; width: 50%; padding: 10px;">
        <form id="formulario-cervezas">
         <label for="nombre-grupo">Nombre del grupo:</label>
         <input type="text" id="nombre-grupo" name="nombre-grupo" required><br><br>
+
         <label for="mesa">Mesa:</label>
         <input type="text" id="mesa" name="mesa" required><br><br>
+
         <label for="cervezas">Elige tu cerveza</label>
-        <input type="text" id="cervezas" name="cervezas" required><br><br>
+        <select name="select" id="cervezas"></select><br><br>
+        
         <label for="cantidad">\xBFCuantas te traigo?</label>
         <input type="number" id="cantidad" name="cantidad" required><br><br>
         <button type="submit" class="rounded bg-success text-white">A\xF1adir pedido</button>
@@ -5047,10 +5053,75 @@ const pedidos = {
 </div>`,
   script: () => {
     console.log("compruebo si funciona pedidos");
+    var html = `
+    <option> Selecciona tu cerveza</option>
+    `;
+    cervezas.forEach((cerveza) => {
+      html += `
+        <option value="${cerveza.id}">${cerveza.nombre}</option>
+        `;
+    });
+    const select = document.querySelector("#cervezas");
+    select.innerHTML = html;
+    select.addEventListener("change", (event) => {
+      const posicionCerveza = cervezas.findIndex((cerveza) => cerveza.id == event.target.value);
+      const html2 = `
+        <div class="card" style="width: 20rem;">
+            <div class="card-body">
+               <h3 class="card-text">${cervezas[posicionCerveza].nombre}</h3> 
+                <p class="card-text">${cervezas[posicionCerveza].descripcion}</p>
+            </div>
+            <img src="${cervezas[posicionCerveza].imagen}" class="card-img-bottom w-50 h-25" alt="FotoCerveza">
+        </div>
+        `;
+      const descripcion = document.querySelector("#cervezaEscogida");
+      descripcion.innerHTML = html2;
+    });
   }
+};
+const tabla = {
+  template: `<div class="shadow shadow-box">
+  <table class="table" id="tabla">
+    <h3>Esto es lo que has pedido de momento</h3>
+      <thead>
+        <tr>
+          <th>cerveza</th>
+          <th>Cantidad</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody id="cuerpo">
+        <tr>
+          <td>Estrella Galicia</td>
+          <td>5</td>
+          <td><button type="button" class="btn btn-danger text-white">Eliminar</button></td>
+          <td><button type="button" class="btn btn-warning ">Editar pedido</button></td>
+        </tr>
+
+        <tr>
+          <td>Alhambra Reserva 1925</td>
+          <td>3</td>
+          <td><button type="button" class="btn btn-danger text-white">Eliminars</button></td>
+          <td><button type="button" class="btn btn-warning ">Editar pedido</button></td>
+        </tr>
+
+        <tr>
+          <td>San Miguel Especial</td>
+          <td>5</td>
+          <td><button type="button" class="btn btn-danger text-white">Eliminar</button></td>
+          <td><button type="button" class="btn btn-warning ">Editar pedido</button></td>
+        </tr>
+        
+      </tbody>
+    </table>
+</div>
+    
+    `
 };
 document.querySelector("header").innerHTML = header.template;
 document.querySelector("main").innerHTML = home.template;
 document.querySelector("#pedidos").innerHTML = pedidos.template;
 pedidos.script();
+document.querySelector("#tabla").innerHTML = tabla.template;
 document.querySelector("footer").innerHTML = footer.template;
