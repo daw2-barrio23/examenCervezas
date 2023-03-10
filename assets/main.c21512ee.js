@@ -5068,7 +5068,7 @@ const pedidos = {
       const html2 = `
         <div class="card" style="width: 20rem;">
             <div class="card-body">
-               <h3 class="card-text">${cervezas[posicionCerveza].nombre}</h3> 
+                <h4 class="card-text">${cervezas[posicionCerveza].nombre}</h4> 
                 <p class="card-text">${cervezas[posicionCerveza].descripcion}</p>
             </div>
             <img src="${cervezas[posicionCerveza].imagen}" class="card-img-bottom w-50 h-25" alt="FotoCerveza">
