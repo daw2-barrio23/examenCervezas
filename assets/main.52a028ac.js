@@ -45,26 +45,6 @@ const header = {
 const footer = {
   template: `<h1>footer</h1>`
 };
-const pedidos = {
-  template: `<div class="col-12 d-flex">
-    <div class="col-6 shadow shadow-box" style="height: 100%; width: 50%; padding: 10px;">
-       <form id="formulario-cervezas">
-        <label for="nombre-grupo">Nombre del grupo:</label>
-        <input type="text" id="nombre-grupo" name="nombre-grupo" required><br><br>
-        <label for="mesa">Mesa:</label>
-        <input type="text" id="mesa" name="mesa" required><br><br>
-        <label for="cervezas">Elige tu cerveza</label>
-        <input type="text" id="cervezas" name="cervezas" required><br><br>
-        <label for="cantidad">\xBFCuantas te traigo?</label>
-        <input type="number" id="cantidad" name="cantidad" required><br><br>
-        <button type="submit" class="rounded bg-success text-white">A\xF1adir pedido</button>
-       </form> 
-    </div>
-   <div class="col-6">
-      
-   </div> 
-</div>`
-};
 const tabla = {
   template: `<div class="shadow shadow-box">
   <table class="table" id="tabla">
@@ -108,7 +88,9 @@ const tabla = {
 const home = {
   template: `
     <h4>Birras y tapas</h4>
-    ${pedidos.template}
+    <div id="pedidos">
+    </div>
+    
     <br>
     <br>
 
@@ -5045,6 +5027,30 @@ class Toast extends BaseComponent {
 }
 enableDismissTrigger(Toast);
 defineJQueryPlugin(Toast);
+const pedidos = {
+  template: `<div class="col-12 d-flex">
+    <div class="col-6 shadow shadow-box" style="height: 100%; width: 50%; padding: 10px;">
+       <form id="formulario-cervezas">
+        <label for="nombre-grupo">Nombre del grupo:</label>
+        <input type="text" id="nombre-grupo" name="nombre-grupo" required><br><br>
+        <label for="mesa">Mesa:</label>
+        <input type="text" id="mesa" name="mesa" required><br><br>
+        <label for="cervezas">Elige tu cerveza</label>
+        <input type="text" id="cervezas" name="cervezas" required><br><br>
+        <label for="cantidad">\xBFCuantas te traigo?</label>
+        <input type="number" id="cantidad" name="cantidad" required><br><br>
+        <button type="submit" class="rounded bg-success text-white">A\xF1adir pedido</button>
+       </form> 
+    </div>
+   <div class="col-6" id=cervezaEscogida>
+   </div>
+</div>`,
+  script: () => {
+    console.log("compruebo si funciona pedidos");
+  }
+};
 document.querySelector("header").innerHTML = header.template;
 document.querySelector("main").innerHTML = home.template;
+document.querySelector("#pedidos").innerHTML = pedidos.template;
+pedidos.script();
 document.querySelector("footer").innerHTML = footer.template;
