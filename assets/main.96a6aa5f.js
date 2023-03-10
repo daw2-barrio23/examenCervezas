@@ -40,13 +40,33 @@
   }
 })();
 const header = {
-  template: `<h1>header</h1>`
+  template: `<p>Nombre: Nicol\xE1s Barrio</p>`
 };
 const footer = {
   template: `<h1>footer</h1>`
 };
+const pedidos = {
+  template: `<div class="col-12 d-flex">
+    <div class="col-6">
+       <form id="formulario-cervezas">
+        <label for="nombre-grupo">Nombre del grupo:</label>
+        <input type="text" id="nombre-grupo" name="nombre-grupo" required><br><br>
+        <label for="mesa">Mesa:</label>
+        <input type="text" id="mesa" name="mesa" required><br><br>
+        <label for="cervezas">Elige tu cerveza</label>
+        <input type="text" id="cervezas" name="cervezas" required><br><br>
+        <label for="cantidad">\xBFCuantas te traigo?</label>
+        <input type="number" id="cantidad" name="cantidad" required><br><br>
+       </form> 
+    </div>
+
+</div>`
+};
 const home = {
-  template: `<h1>home</h1>`
+  template: `
+    <h4>Birras y tapas</h4>
+    ${pedidos.template}
+    `
 };
 const styles = "";
 var top = "top";
