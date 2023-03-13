@@ -59,6 +59,7 @@ const home = {
     `
 };
 const styles = "";
+const style = "";
 var top = "top";
 var bottom = "bottom";
 var right = "right";
@@ -118,13 +119,13 @@ function isShadowRoot(node) {
 function applyStyles(_ref) {
   var state = _ref.state;
   Object.keys(state.elements).forEach(function(name) {
-    var style = state.styles[name] || {};
+    var style2 = state.styles[name] || {};
     var attributes = state.attributes[name] || {};
     var element = state.elements[name];
     if (!isHTMLElement(element) || !getNodeName(element)) {
       return;
     }
-    Object.assign(element.style, style);
+    Object.assign(element.style, style2);
     Object.keys(attributes).forEach(function(name2) {
       var value = attributes[name2];
       if (value === false) {
@@ -159,14 +160,14 @@ function effect$2(_ref2) {
       var element = state.elements[name];
       var attributes = state.attributes[name] || {};
       var styleProperties = Object.keys(state.styles.hasOwnProperty(name) ? state.styles[name] : initialStyles[name]);
-      var style = styleProperties.reduce(function(style2, property) {
-        style2[property] = "";
-        return style2;
+      var style2 = styleProperties.reduce(function(style3, property) {
+        style3[property] = "";
+        return style3;
       }, {});
       if (!isHTMLElement(element) || !getNodeName(element)) {
         return;
       }
-      Object.assign(element.style, style);
+      Object.assign(element.style, style2);
       Object.keys(attributes).forEach(function(attribute) {
         element.removeAttribute(attribute);
       });
@@ -5095,21 +5096,21 @@ const tabla = {
         <tr>
           <td>Estrella Galicia</td>
           <td>5</td>
-          <td><button type="button" class="btn btn-danger text-white">Eliminar</button></td>
+          <td><button type="button" class="btn btn-danger text-white eliminar">Eliminar</button></td>
           <td><button type="button" class="btn btn-warning ">Editar pedido</button></td>
         </tr>
 
         <tr>
           <td>Alhambra Reserva 1925</td>
           <td>3</td>
-          <td><button type="button" class="btn btn-danger text-white">Eliminar</button></td>
+          <td><button type="button" class="btn btn-danger text-white eliminar">Eliminar</button></td>
           <td><button type="button" class="btn btn-warning ">Editar pedido</button></td>
         </tr>
 
         <tr>
           <td>San Miguel Especial</td>
           <td>5</td>
-          <td><button type="button" class="btn btn-danger text-white">Eliminar</button></td>
+          <td><button type="button" class="btn btn-danger text-white eliminar">Eliminar</button></td>
           <td><button type="button" class="btn btn-warning ">Editar pedido</button></td>
         </tr>
         
@@ -5118,6 +5119,14 @@ const tabla = {
 </div>
     `,
   script: () => {
+    const botonesEliminar = document.querySelectorAll(".eliminar");
+    botonesEliminar.forEach((botonEliminar) => {
+      botonEliminar.addEventListener("click", () => {
+        alert(`Se hizo click en eliminar `);
+        const fila = botonEliminar.parentNode.parentNode;
+        fila.classList.add("fila-oculta");
+      });
+    });
   }
 };
 document.querySelector("header").innerHTML = header.template;
@@ -5125,4 +5134,5 @@ document.querySelector("main").innerHTML = home.template;
 document.querySelector("#pedidos").innerHTML = pedidos.template;
 pedidos.script();
 document.querySelector("#tabla").innerHTML = tabla.template;
+tabla.script();
 document.querySelector("footer").innerHTML = footer.template;
