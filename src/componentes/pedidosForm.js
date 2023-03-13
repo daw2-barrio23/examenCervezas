@@ -55,7 +55,8 @@ script:()=>{
         
         descripcion.innerHTML = html//sacamos por pantalla la cerveza seleccionada
     })
-
     
-}   
+    
+}
+     
 }
