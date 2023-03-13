@@ -5102,7 +5102,7 @@ const tabla = {
         <tr>
           <td>Alhambra Reserva 1925</td>
           <td>3</td>
-          <td><button type="button" class="btn btn-danger text-white">Eliminars</button></td>
+          <td><button type="button" class="btn btn-danger text-white">Eliminar</button></td>
           <td><button type="button" class="btn btn-warning ">Editar pedido</button></td>
         </tr>
 
@@ -5116,8 +5116,9 @@ const tabla = {
       </tbody>
     </table>
 </div>
-    
-    `
+    `,
+  script: () => {
+  }
 };
 document.querySelector("header").innerHTML = header.template;
 document.querySelector("main").innerHTML = home.template;
